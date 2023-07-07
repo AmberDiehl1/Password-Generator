@@ -1,10 +1,7 @@
 // Variable references the #generate element
 var generateBtn = document.querySelector("#generate");
 
-
-// google array.concat() array.push()
 // special, uppercase, lowercase and numeric characters to be included in password
-
 var specialCharacters = '@%+\\/!#$^?:)(}{][~-_.'
 var uppercasedCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 var numericCharacters = '0123456789'
@@ -12,60 +9,48 @@ var lowercasedCharacters = 'abcdefghijklmnopqrstuvwxyz'
 
 // defining the generate password function 
 function generatePassword() {
+  // creating prompts and confirmations for users
   var passwordlength = window.prompt(
-    "How many characters long would you like your password to be? between 8 and 128"
-  )
-  console.log("length", passwordlength)
-
+    "How many characters long would you like your password to be? between 8 and 128");
+    
   var uppercase = window.confirm(
-    "Click okay to confirm including uppercase characters."
-  );
-  console.log(uppercase)
+    "Click OKAY to confirm including uppercase characters. Click CANCEL to not include.");
 
-  var Lowercase = window.confirm(
-    "Click okay to confirm including lower characters."
-  );
-  console.log(Lowercase)
+  var lowercase = window.confirm(
+    "Click OKAY to confirm including lower characters.Click CANCEL to not include.");
 
   var specialcase = window.confirm(
-    "Click okay to confirm including special characters."
-  );
-  console.log(specialcase)
+    "Click OKAY to confirm including special characters.Click CANCEL to not include.");
 
   var numerical = window.confirm(
-    "Click okay to confirm including numbers."
-  );
-  console.log(numerical) 
-// validate the input.
+    "Click OKAY to confirm including numbers.Click CANCEL to not include.");
 
 var possibleCharacters = "" 
-  
+  // combining created characters above to call them into new var.
  if (uppercase) possibleCharacters += uppercasedCharacters
- if (Lowercase) possibleCharacters += lowercasedCharacters 
+ if (lowercase) possibleCharacters += lowercasedCharacters 
  if (specialcase) possibleCharacters += specialCharacters
  if (numerical) possibleCharacters += numericCharacters
 
- console.log(possibleCharacters)
+ var newpassword = ""
 
- var password = ""
  for ( var i = 0; i < passwordlength; i++) {
 
-   var index = Math.floor(Math.random() * possibleCharacters);
-   password += possibleCharacters[index]
+   var index = Math.floor(Math.random() * possibleCharacters.length);
+   console.log(index);
+   newpassword += possibleCharacters[index]
  };
- return password;
-};
+console.log(newpassword)
+ return newpassword;
 
+};
  
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-}
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
