@@ -12,7 +12,10 @@ function generatePassword() {
   // creating prompts and confirmations for users
   var passwordlength = window.prompt(
     "How many characters long would you like your password to be? between 8 and 128");
-    
+   if (parseInt(passwordlength)<8 || parseInt(passwordlength)>128) {
+    alert('please type a number equal to or between 8 & 128')
+    return ""
+   } 
   var uppercase = window.confirm(
     "Click OKAY to confirm including uppercase characters. Click CANCEL to not include.");
 
